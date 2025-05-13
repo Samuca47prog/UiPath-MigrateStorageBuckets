@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="ozOH1rHVskSx9BM-1Je2NQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="staging.uipath.com/universe/Earth/orchestrator_/buckets/add" DesignTimeRectangle="1521, 887, 26, 20" ElementType="Text" FullSelectorArgument="&lt;webctrl aaname=' Add ' class='mdc-button__label' parentid='mat-tab-nav-panel-0' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname=' Add ' class='mdc-button__label' parentid='mat-tab-nav-panel-0' tag='SPAN' type='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' check:innerText='Add' /&gt;" Guid="9620acff-93d2-4f8b-9d29-066001332a36" ImageBase64="" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Add Bucket - UiPath Orchestrator' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V6" Visibility="Interactive" WaitForReadyArgument="None">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target DesignTimeRectangle="1474, 877, 120, 40" ElementType="Button" FullSelectorArgument="&lt;webctrl tag='BUTTON' type='submit' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='submit' class='mat-mdc-tooltip-trigger mdc-button mdc-button--unelevated mat-mdc-unelevated-button ui-spinner-button mat-primary mat-mdc-button-base' aaname=' Add ' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Add' /&gt;" Guid="fc32faec-dd6e-4a6c-b1f3-7efb34eb6716" ImageBase64="" SearchSteps="Selector, FuzzySelector" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="ce21053ea956b254a7f8bca987d64278.png" xmlns="">0EX8Q0d1v-EysVoo6L_oDIQ</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

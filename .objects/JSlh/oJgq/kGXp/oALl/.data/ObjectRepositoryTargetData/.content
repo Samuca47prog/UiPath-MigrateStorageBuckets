@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="qVVHfXezpEq5vhEVglMwRw" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="staging.uipath.com/universe/Earth/orchestrator_/buckets" DesignTimeRectangle="1739, 197, 133, 21" ElementType="Text" FullSelectorArgument="&lt;webctrl aaname='Add storage bucket' parentid='mat-tab-nav-panel-0' tag='SPAN' /&gt;" Guid="2ab099fd-4cd4-48ff-8600-8071ab7a2adb" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Storage Buckets - UiPath Orchestrator' /&gt;" SearchSteps="Selector" Version="V6" Visibility="Interactive" WaitForReadyArgument="None">
+      <imageRef attrName="InformativeScreenshot" originalValue="83554776fc7d91d0d6453670a7a9db9d.png" xmlns="">0YWL1ncTUwECjGJ_C4yd_SQ</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

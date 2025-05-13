@@ -1,0 +1,14 @@
+﻿{
+  "Name": "Create a new storage bu…",
+  "Type": "Element",
+  "TaxonomyType": "Label",
+  "Id": "JfyBLk7PNkCZm93JtcDHeg",
+  "Reference": "i4kkQr7_aUKzn4UHLEZcqw/JfyBLk7PNkCZm93JtcDHeg",
+  "ParentRef": "i4kkQr7_aUKzn4UHLEZcqw/kGXpQUIrCESdmAsTfMAM-w",
+  "Created": "2025-05-13T12:40:40.4498654Z",
+  "Updated": "2025-05-13T12:40:40.4498654Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.10.2.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.4.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

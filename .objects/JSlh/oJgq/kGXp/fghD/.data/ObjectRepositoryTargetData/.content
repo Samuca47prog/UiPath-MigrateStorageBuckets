@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="fu52gu0Cek6R5wP9iCAdFQ" Reference="i4kkQr7_aUKzn4UHLEZcqw/fghDA1dvfkqyfDBftTqFeQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="staging.uipath.com/universe/Earth/orchestrator_/buckets/add" DesignTimeRectangle="363, 492, 578, 38" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl type='' class='mat-mdc-form-field-infix ng-tns-c508571215-147' parentid='mat-tab-nav-panel-0' tag='DIV' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="d464da9d-8fe5-4484-bf34-cacc80caf77e" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Add Bucket - UiPath Orchestrator' /&gt;" SearchSteps="FuzzySelector" Version="V6" Visibility="Interactive" WaitForReadyArgument="None">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target DesignTimeRectangle="363, 465, 79, 21" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='mat-mdc-form-field-label-18' tag='LABEL' type='' class='mdc-floating-label mat-mdc-floating-label ng-tns-c508571215-147 mdc-floating-label--float-above ng-star-inserted' aaname='' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Description' /&gt;" Guid="ddd9ab4c-62bc-40c0-9fd0-98c0f2500b18" SearchSteps="FuzzySelector" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="3f7b018ee939871feecca684b7389863.png" xmlns="">0OFaQsXrHBUa9RXteNUVrHg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">TypeInto</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

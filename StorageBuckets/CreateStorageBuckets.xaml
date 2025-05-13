@@ -1,0 +1,409 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="CreateStorageBuckets" this:CreateStorageBuckets.in_WorkbookPath="C:\Users\samuel.simao\OneDrive - UiPath\Documents\UiPath\Migration Tool\Aziz help\storage-buckets.xlsx" this:CreateStorageBuckets.in_OrchestratorUrl="https://staging.uipath.com/universe/Earth/orchestrator_/" this:CreateStorageBuckets.in_FolderId="1974666" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_WorkbookPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_OrchestratorUrl" Type="InArgument(x:String)" />
+    <x:Property Name="in_AccessToken" Type="InArgument(x:String)" />
+    <x:Property Name="in_FolderId" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:CreateStorageBuckets.in_AccessToken>
+    <InArgument x:TypeArguments="x:String" />
+  </this:CreateStorageBuckets.in_AccessToken>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>CreateStorageBuckets_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.Web</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>Newtonsoft.Json.Converters</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>UiPath.Web</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="CreateStorageBuckets" sap:VirtualizedContainerService.HintSize="1509.3333333333333,1342.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_6">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="GetTable" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[GetTable]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="570,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Get" WorkbookPath="[in_WorkbookPath]" />
+    <uix:NApplicationCard CloseMode="Never" DisplayName="Browser" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="570,1200" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="Never" ScopeGuid="2600f8bb-804c-4778-8fc6-d99712cf80a6">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="536,958" sap2010:WorkflowViewState.IdRef="Sequence_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[GetTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="502,898" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+              <ui:ForEachRow.Body>
+                <ActivityAction x:TypeArguments="sd:DataRow">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,707.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="Headers" />
+                      <Variable x:TypeArguments="x:String" Name="Response" />
+                      <Variable x:TypeArguments="x:Int32" Name="StatusCode">
+                        <Variable.Default>
+                          <Literal x:TypeArguments="x:Int32" />
+                        </Variable.Default>
+                      </Variable>
+                      <Variable x:TypeArguments="x:String" Name="body" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="434,118.66666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Going to create sb &quot; + CurrentRow(&quot;Name&quot;).ToString]" />
+                    <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize Window" sap:VirtualizedContainerService.HintSize="434,57.333333333333336" sap2010:WorkflowViewState.IdRef="MaximizeWindow_1" />
+                    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="434,423.3333333333333" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                      <TryCatch.Try>
+                        <Sequence sap:VirtualizedContainerService.HintSize="416,1503.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Add storage bucket'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="382,229.33333333333334" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2600f8bb-804c-4778-8fc6-d99712cf80a6" Version="V4">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="staging.uipath.com/universe/Earth/orchestrator_/buckets" ContentHash="qVVHfXezpEq5vhEVglMwRw" DesignTimeRectangle="1739, 197, 133, 21" ElementType="Text" FullSelectorArgument="&lt;webctrl aaname='Add storage bucket' parentid='mat-tab-nav-panel-0' tag='SPAN' /&gt;" Guid="2ab099fd-4cd4-48ff-8600-8071ab7a2adb" InformativeScreenshot="83554776fc7d91d0d6453670a7a9db9d.png" Reference="i4kkQr7_aUKzn4UHLEZcqw/oALl3P3PMUmDCM8ZvIDW3g" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Storage Buckets - UiPath Orchestrator' /&gt;" SearchSteps="Selector" Version="V6" Visibility="Interactive" WaitForReadyArgument="None" />
+                            </uix:NClick.Target>
+                            <uix:NClick.VerifyOptions>
+                              <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                                <uix:VerifyExecutionOptions.Retry>
+                                  <InArgument x:TypeArguments="x:Boolean" />
+                                </uix:VerifyExecutionOptions.Retry>
+                                <uix:VerifyExecutionOptions.Timeout>
+                                  <InArgument x:TypeArguments="x:Double" />
+                                </uix:VerifyExecutionOptions.Timeout>
+                              </uix:VerifyExecutionOptions>
+                            </uix:NClick.VerifyOptions>
+                          </uix:NClick>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Create a new storage bu…'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="382,229.33333333333334" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2600f8bb-804c-4778-8fc6-d99712cf80a6" Version="V4">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="staging.uipath.com/universe/Earth/orchestrator_/buckets" ContentHash="jkHkRKWAYku2f7rv3qZonw" DesignTimeRectangle="1719, 233, 187, 21" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Create a new storage bucket' parentid='mat-menu-panel-111' tag='SPAN' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Create a new storage bucket' /&gt;" Guid="c18d117a-5027-409c-a51c-2ca4e91adaf2" InformativeScreenshot="e632d7008693545556d15a3f1fd027ff.png" Reference="i4kkQr7_aUKzn4UHLEZcqw/JfyBLk7PNkCZm93JtcDHeg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Storage Buckets - UiPath Orchestrator' /&gt;" SearchSteps="FuzzySelector" Version="V6" Visibility="Interactive" WaitForReadyArgument="None">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                    <uix:Target DesignTimeRectangle="1703, 228, 219, 32" ElementType="Button" FullSelectorArgument="&lt;webctrl aria-role='menuitem' tag='BUTTON' type='button' /&gt;" Guid="b1e41633-bb12-4269-9239-3b8e0d5dad0a" SearchSteps="Selector" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NClick.Target>
+                            <uix:NClick.VerifyOptions>
+                              <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                                <uix:VerifyExecutionOptions.Retry>
+                                  <InArgument x:TypeArguments="x:Boolean" />
+                                </uix:VerifyExecutionOptions.Retry>
+                                <uix:VerifyExecutionOptions.Timeout>
+                                  <InArgument x:TypeArguments="x:Double" />
+                                </uix:VerifyExecutionOptions.Timeout>
+                              </uix:VerifyExecutionOptions>
+                            </uix:NClick.VerifyOptions>
+                          </uix:NClick>
+                          <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Name'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="382,292.6666666666667" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="2600f8bb-804c-4778-8fc6-d99712cf80a6" Text="[CurrentRow(&quot;Name&quot;).ToString]" Version="V4">
+                            <uix:NTypeInto.Target>
+                              <uix:TargetAnchorable BrowserURL="staging.uipath.com/universe/Earth/orchestrator_/buckets/add" ContentHash="IG5n4ZkYEkWIaHedwMgHsg" DesignTimeRectangle="363, 398, 578, 38" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl type='' parentid='mat-tab-nav-panel-0' tag='DIV' class='mat-mdc-form-field-infix ng-tns-c508571215-146' aaname='' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="9805567a-b193-47b8-8be8-5746bcfe5021" InformativeScreenshot="e4406f9cffdc47f29631572a6a84f1cd.png" IsResponsive="True" Reference="i4kkQr7_aUKzn4UHLEZcqw/eLNf5GQDw0qAbV5PN89UfA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Add Bucket - UiPath Orchestrator' /&gt;" SearchSteps="FuzzySelector" Version="V6" Visibility="Interactive" WaitForReadyArgument="None">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target DesignTimeRectangle="363, 371, 50, 21" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='mat-mdc-form-field-label-16' tag='LABEL' type='' class='mdc-floating-label mat-mdc-floating-label ng-tns-c508571215-146 mdc-floating-label--float-above ng-star-inserted' aaname='' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Name' /&gt;" Guid="29c546e5-082e-4b6a-a329-e599f79b64ca" SearchSteps="FuzzySelector" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NTypeInto.Target>
+                            <uix:NTypeInto.VerifyOptions>
+                              <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                                <uix:VerifyExecutionTypeIntoOptions.Retry>
+                                  <InArgument x:TypeArguments="x:Boolean" />
+                                </uix:VerifyExecutionTypeIntoOptions.Retry>
+                                <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                  <InArgument x:TypeArguments="x:Double" />
+                                </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                              </uix:VerifyExecutionTypeIntoOptions>
+                            </uix:NTypeInto.VerifyOptions>
+                          </uix:NTypeInto>
+                          <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Description'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="382,292.6666666666667" sap2010:WorkflowViewState.IdRef="NTypeInto_2" ScopeIdentifier="2600f8bb-804c-4778-8fc6-d99712cf80a6" Text="[CurrentRow(&quot;Description&quot;).ToString]" Version="V4">
+                            <uix:NTypeInto.Target>
+                              <uix:TargetAnchorable BrowserURL="staging.uipath.com/universe/Earth/orchestrator_/buckets/add" ContentHash="fu52gu0Cek6R5wP9iCAdFQ" DesignTimeRectangle="363, 492, 578, 38" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl type='' class='mat-mdc-form-field-infix ng-tns-c508571215-147' parentid='mat-tab-nav-panel-0' tag='DIV' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="d464da9d-8fe5-4484-bf34-cacc80caf77e" InformativeScreenshot="3f7b018ee939871feecca684b7389863.png" IsResponsive="True" Reference="i4kkQr7_aUKzn4UHLEZcqw/fghDA1dvfkqyfDBftTqFeQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Add Bucket - UiPath Orchestrator' /&gt;" SearchSteps="FuzzySelector" Version="V6" Visibility="Interactive" WaitForReadyArgument="None">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target DesignTimeRectangle="363, 465, 79, 21" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='mat-mdc-form-field-label-18' tag='LABEL' type='' class='mdc-floating-label mat-mdc-floating-label ng-tns-c508571215-147 mdc-floating-label--float-above ng-star-inserted' aaname='' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Description' /&gt;" Guid="ddd9ab4c-62bc-40c0-9fd0-98c0f2500b18" SearchSteps="FuzzySelector" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NTypeInto.Target>
+                            <uix:NTypeInto.VerifyOptions>
+                              <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                                <uix:VerifyExecutionTypeIntoOptions.Retry>
+                                  <InArgument x:TypeArguments="x:Boolean" />
+                                </uix:VerifyExecutionTypeIntoOptions.Retry>
+                                <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                  <InArgument x:TypeArguments="x:Double" />
+                                </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                              </uix:VerifyExecutionTypeIntoOptions>
+                            </uix:NTypeInto.VerifyOptions>
+                          </uix:NTypeInto>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="3" DisplayName="Click 'Add'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="382,229.33333333333334" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2600f8bb-804c-4778-8fc6-d99712cf80a6" Version="V4">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="staging.uipath.com/universe/Earth/orchestrator_/buckets/add" ContentHash="ozOH1rHVskSx9BM-1Je2NQ" DesignTimeRectangle="1521, 887, 26, 20" ElementType="Text" FullSelectorArgument="&lt;webctrl aaname=' Add ' class='mdc-button__label' parentid='mat-tab-nav-panel-0' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname=' Add ' class='mdc-button__label' parentid='mat-tab-nav-panel-0' tag='SPAN' type='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' check:innerText='Add' /&gt;" Guid="9620acff-93d2-4f8b-9d29-066001332a36" ImageBase64="" InformativeScreenshot="ce21053ea956b254a7f8bca987d64278.png" Reference="i4kkQr7_aUKzn4UHLEZcqw/f4oOU-QIo0K7vxlK9ZhGkA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Add Bucket - UiPath Orchestrator' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V6" Visibility="Interactive" WaitForReadyArgument="None">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                    <uix:Target DesignTimeRectangle="1474, 877, 120, 40" ElementType="Button" FullSelectorArgument="&lt;webctrl tag='BUTTON' type='submit' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='submit' class='mat-mdc-tooltip-trigger mdc-button mdc-button--unelevated mat-mdc-unelevated-button ui-spinner-button mat-primary mat-mdc-button-base' aaname=' Add ' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Add' /&gt;" Guid="fc32faec-dd6e-4a6c-b1f3-7efb34eb6716" ImageBase64="" SearchSteps="Selector, FuzzySelector" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NClick.Target>
+                            <uix:NClick.VerifyOptions>
+                              <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                                <uix:VerifyExecutionOptions.Retry>
+                                  <InArgument x:TypeArguments="x:Boolean" />
+                                </uix:VerifyExecutionOptions.Retry>
+                                <uix:VerifyExecutionOptions.Timeout>
+                                  <InArgument x:TypeArguments="x:Double" />
+                                </uix:VerifyExecutionOptions.Timeout>
+                              </uix:VerifyExecutionOptions>
+                            </uix:NClick.VerifyOptions>
+                          </uix:NClick>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,170" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Created sb &quot; + CurrentRow(&quot;Name&quot;).ToString]" />
+                        </Sequence>
+                      </TryCatch.Try>
+                      <TryCatch.Catches>
+                        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,219.33333333333334" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ActivityAction x:TypeArguments="s:Exception">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                            </ActivityAction.Argument>
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,147.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Warn" Message="[&quot;Failed creating sb &quot; + CurrentRow(&quot;Name&quot;).ToString]" />
+                          </ActivityAction>
+                        </Catch>
+                      </TryCatch.Catches>
+                    </TryCatch>
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="434,48" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="484,108" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Sequence DisplayName="API" sap:VirtualizedContainerService.HintSize="450,48" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign sap2010:Annotation.AnnotationText="&quot;{&#xA; \&quot;&quot;Name\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;Name&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;Description\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;Description&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;Identifier\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;Identifier&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;StorageProvider\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;StorageProvider&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;StorageParameters\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;StorageParameters&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;StorageContainer\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;StorageContainer&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;Options\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;Options&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;CredentialStoreId\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;CredentialStoreId&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;ExternalName\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;ExternalName&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;Password\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;Password&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;FoldersCount\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;FoldersCount&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;Encrypted\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;Encrypted&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;Id\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;Id&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;Tags\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;Tags&quot;).ToString + &quot;\&quot;&quot;&#xA;}&quot;&#xA;&#xA;&#xA;&#xA;&#xA;&quot;{&#xA; \&quot;&quot;Name\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;Name&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;Description\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;Description&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;Identifier\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;Identifier&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;StorageProvider\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;StorageProvider&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;Options\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;Options&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;Encrypted\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;Encrypted&quot;).ToString + &quot;\&quot;&quot;,&#xA; \&quot;&quot;Tags\&quot;&quot;:\&quot;&quot;&quot; + CurrentRow(&quot;Tags&quot;).ToString + &quot;\&quot;&quot;&#xA;}&quot;" sap:VirtualizedContainerService.HintSize="416,57.333333333333336" sap2010:WorkflowViewState.IdRef="Assign_1">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[body]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String" xml:space="preserve">["{
+	\""Name\"":\""" + If(String.IsNullOrEmpty(CurrentRow("Name").ToString), "null", CurrentRow("Name").ToString) + "\"",
+	\""Description\"":\""" + If(String.IsNullOrEmpty(CurrentRow("Description").ToString), "null", CurrentRow("Description").ToString) + "\"",
+	\""Identifier\"":\""" + If(String.IsNullOrEmpty(CurrentRow("Identifier").ToString), "null", "a"+CurrentRow("Identifier").ToString.Skip(1).ToString) + "\"",
+	\""StorageProvider\"":\""" + If(String.IsNullOrEmpty(CurrentRow("StorageProvider").ToString), "null", CurrentRow("StorageProvider").ToString) + "\"",
+	\""StorageParameters\"":\""" + If(String.IsNullOrEmpty(CurrentRow("StorageParameters").ToString), "null", CurrentRow("StorageParameters").ToString) + "\"",
+	\""Options\"":\""" + If(String.IsNullOrEmpty(CurrentRow("Options").ToString), "null", CurrentRow("Options").ToString) + "\"",
+	\""Encrypted\"":\""" + If(String.IsNullOrEmpty(CurrentRow("Encrypted").ToString), "null", CurrentRow("Encrypted").ToString) + "\"",
+	\""Tags\"":\""" + If(String.IsNullOrEmpty(CurrentRow("Tags").ToString), "null", CurrentRow("Tags").ToString) + "\""
+}"]</InArgument>
+                              </Assign.Value>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Assign>
+                            <ui:HttpClient ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" AuthenticationType="None" Body="[body]" BodyFormat="application/json" DisplayName="HTTP Request - Get ML Skills" EnableSSLVerification="True" EndPoint="[in_OrchestratorUrl +&quot;odata/Buckets&quot;]" sap:VirtualizedContainerService.HintSize="416,104" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="POST" ResponseHeaders="[Headers]" Result="[Response]" StatusCode="[StatusCode]" TimeoutMS="6000">
+                              <ui:HttpClient.Attachments>
+                                <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                              </ui:HttpClient.Attachments>
+                              <ui:HttpClient.Cookies>
+                                <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                              </ui:HttpClient.Cookies>
+                              <ui:HttpClient.Headers>
+                                <InArgument x:TypeArguments="x:String" x:Key="Authorization">[in_AccessToken]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="X-UIPATH-OrganizationUnitId">[in_FolderId]</InArgument>
+                              </ui:HttpClient.Headers>
+                              <ui:HttpClient.Parameters>
+                                <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                              </ui:HttpClient.Parameters>
+                              <ui:HttpClient.UrlSegments>
+                                <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                              </ui:HttpClient.UrlSegments>
+                            </ui:HttpClient>
+                            <Switch x:TypeArguments="x:Int32" DisplayName="Switch" Expression="[StatusCode]" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                              <Switch.Default>
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[&quot;Failed to create storage bucket &quot; + CurrentRow(&quot;Name&quot;).ToString + Environment.NewLine + &#xA;&quot;- CODE &quot; + StatusCode.ToString + Environment.NewLine + &#xA;&quot;- RESPONSE &quot; + Response.ToString + Environment.NewLine + &#xA;&quot;- HEADERS &quot; + String.Join(&quot;; &quot;, Headers.Select(Function(x) x.Key.ToString+&quot;: &quot;+x.Value.ToString))]" />
+                              </Switch.Default>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:LogMessage x:Key="201" DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Created storage bucket &quot; + CurrentRow(&quot;Name&quot;).ToString]" />
+                            </Switch>
+                          </Sequence>
+                        </Sequence>
+                      </ui:CommentOut.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:CommentOut>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEachRow.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ForEachRow>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="-1928, -8, 1936, 1048" BrowserType="Chrome" ContentHash="yvom5rkUjUyXeIi7ozUeLg" IconBase64="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" sap2010:WorkflowViewState.IdRef="TargetApp_1" InformativeScreenshot="e2f15b8a7583a66ac754062a3cc7c43c.jpg" Reference="i4kkQr7_aUKzn4UHLEZcqw/kGXpQUIrCESdmAsTfMAM-w" Selector="&lt;html app='chrome.exe' title='Storage Buckets - UiPath Orchestrator' /&gt;" Url="https://staging.uipath.com/universe/Earth/orchestrator_/buckets?tid=506830&amp;fid=2067728&amp;index=0&amp;size=25&amp;state=M4ewTgLgPgZglgUwDYBMoDsCGBbBUVxgIDGEcI6UmwxAevQCQAMUDAjFAExQDMUALAF1BQA%3D" Version="V2" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>
