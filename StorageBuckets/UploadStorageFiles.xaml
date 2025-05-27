@@ -1,8 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="UploadStorageFiles" this:UploadStorageFiles.in_OrchestratorFolderPath="Italy/Naples" this:UploadStorageFiles.in_DownloadsFolder="[Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), &quot;Downloads&quot;)]" this:UploadStorageFiles.in_WorkbookPath="C:\Users\samuel.simao\OneDrive - UiPath\Documents\UiPath\Migration Tool\Aziz help\storage-buckets.xlsx" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Activity mc:Ignorable="sap sap2010" x:Class="UploadStorageFiles" this:UploadStorageFiles.in_OrchestratorFolderPath="Italy/Naples" this:UploadStorageFiles.in_DownloadsFolder="[Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), &quot;Downloads&quot;)]" this:UploadStorageFiles.in_WorkbookPath="C:\Users\samuel.simao\OneDrive - UiPath\Documents\UiPath\Migration Tool\Aziz help\storage-buckets.xlsx" this:UploadStorageFiles.in_FolderId="2067728" this:UploadStorageFiles.in_OrchestratorUrl="https://staging.uipath.com/universe/Earth/orchestrator_/" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="in_OrchestratorFolderPath" Type="InArgument(x:String)" />
-    <x:Property Name="in_DownloadsFolder" Type="InArgument(x:String)" />
-    <x:Property Name="in_WorkbookPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Orchestrator Folder Path where the SBs live." Name="in_OrchestratorFolderPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Folder where all the folders with the Storage Buckets and files are stored locally." Name="in_DownloadsFolder" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Full path of the workbook that holds the Storage buckets information. Must be the SBs of the destination" Name="in_WorkbookPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Folder Id in Orchestrator" Name="in_FolderId" Type="InArgument(x:String)" />
+    <x:Property Name="in_OrchestratorUrl" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -46,6 +49,15 @@
       <x:String>UiPath.Excel</x:String>
       <x:String>UiPath.Excel.Activities</x:String>
       <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.Web</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>System.Net.Http</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -112,35 +124,53 @@
       <AssemblyReference>System.Private.Xml</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>UiPath.Web</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>MigrateStorageBuckets.Core</AssemblyReference>
+      <AssemblyReference>Microsoft.Extensions.DependencyModel</AssemblyReference>
+      <AssemblyReference>System.Net.Http.WinHttpHandler</AssemblyReference>
+      <AssemblyReference>System.Net.Http</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="UploadStorageFiles" sap:VirtualizedContainerService.HintSize="1509.3333333333333,1600.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="UploadStorageFiles" sap:VirtualizedContainerService.HintSize="1449.3333333333333,3194.6666666666665" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="GetTable" />
       <Variable x:TypeArguments="x:String" Name="storageBucketName" />
+      <Variable x:TypeArguments="x:String" Name="AccessToken" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[GetTable]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="570,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Get" WorkbookPath="[in_WorkbookPath]" />
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[GetTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="570,1458" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="API_GetToken - Invoke Workflow File (API\API_GetToken.xaml)" sap:VirtualizedContainerService.HintSize="666.6666666666666,210" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="StorageBuckets\00_Get_AccessToken.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Scopes" />
+        <OutArgument x:TypeArguments="x:String" x:Key="out_AccessToken">[AccessToken]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[GetTable]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="666.6666666666666,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Get" WorkbookPath="[in_WorkbookPath]" />
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[GetTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="666.6666666666666,2842" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="536,1267.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="632.6666666666666,2651.3333333333335" sap2010:WorkflowViewState.IdRef="Sequence_4">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="currentSBLocalFolderPath" />
+              <Variable x:TypeArguments="x:String" Name="bucketId" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign DisplayName="Assign - Storage Bucket Name" sap:VirtualizedContainerService.HintSize="502,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign DisplayName="Assign - Storage Bucket Name" sap:VirtualizedContainerService.HintSize="598.6666666666666,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_3">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[StorageBucketName]</OutArgument>
               </Assign.To>
@@ -148,7 +178,7 @@
                 <InArgument x:TypeArguments="x:String">[CurrentRow("Name").ToString]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign DisplayName="Assign - Current SB Local Folder Path" sap:VirtualizedContainerService.HintSize="502,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign DisplayName="Assign - Current SB Local Folder Path" sap:VirtualizedContainerService.HintSize="598.6666666666666,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_2">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[currentSBLocalFolderPath]</OutArgument>
               </Assign.To>
@@ -156,7 +186,7 @@
                 <InArgument x:TypeArguments="x:String">[Path.Combine(in_DownloadsFolder, StorageBucketName)]</InArgument>
               </Assign.Value>
             </Assign>
-            <If Condition="[Not Directory.Exists(currentSBLocalFolderPath)]" DisplayName="If - Folder for this SB not exists" sap:VirtualizedContainerService.HintSize="502,57.333333333333336" sap2010:WorkflowViewState.IdRef="If_2">
+            <If Condition="[Not Directory.Exists(currentSBLocalFolderPath)]" DisplayName="If - Folder for this SB not exists" sap:VirtualizedContainerService.HintSize="598.6666666666666,57.333333333333336" sap2010:WorkflowViewState.IdRef="If_2">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -185,7 +215,30 @@
                 </Sequence>
               </If.Else>
             </If>
-            <ui:ForEachFileX DisplayName="For Each File in Folder" Folder="[currentSBLocalFolderPath]" sap:VirtualizedContainerService.HintSize="502,915.3333333333334" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="True" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+            <Assign sap:VirtualizedContainerService.HintSize="598.6666666666666,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_5">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[bucketId]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[CurrentRow("Id").ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="598.6666666666666,57.333333333333336" sap2010:WorkflowViewState.IdRef="Assign_8">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[bucketId]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">44894</InArgument>
+              </Assign.Value>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Assign>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="598.6666666666666,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Uploading files to Storage Bucket &quot; + storageBucketName]" />
+            <ui:ForEachFileX DisplayName="For Each File in Folder" Folder="[currentSBLocalFolderPath]" sap:VirtualizedContainerService.HintSize="598.6666666666666,1948" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="True" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
               <ui:ForEachFileX.Body>
                 <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
                   <ActivityAction.Argument1>
@@ -194,22 +247,170 @@
                   <ActivityAction.Argument2>
                     <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
                   </ActivityAction.Argument2>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="468,622.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="564.6666666666666,1655.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Name="FileNameInSB" />
+                    </Sequence.Variables>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[CurrentFile.FullName]" />
-                    <Assign DisplayName="Assign - Storage Bucket Name" sap:VirtualizedContainerService.HintSize="434,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
+                    <Assign sap:VirtualizedContainerService.HintSize="530.6666666666666,118" sap2010:WorkflowViewState.IdRef="Assign_7">
                       <Assign.To>
-                        <OutArgument x:TypeArguments="x:String">[storageBucketName]</OutArgument>
+                        <OutArgument x:TypeArguments="x:String">[FileNameInSB]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">[CurrentFile.FullName.Replace(in_DownloadsFolder+"\", "").Split("\"c).First]</InArgument>
+                        <InArgument x:TypeArguments="x:String" xml:space="preserve">[CurrentFile.FullName.Replace(
+	Path.Combine(in_DownloadsFolder, storageBucketName),
+	""
+)]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <ucas:UploadStorageFile FileResource="{x:Null}" TimeoutMS="{x:Null}" Destination="[CurrentFile.FullName.Replace(&#xD;&#xA;&#x9;Path.Combine(in_DownloadsFolder, storageBucketName),&#xD;&#xA;&#x9;&quot;&quot;&#xD;&#xA;)]" DisplayName="Upload Storage File" FolderPath="[in_OrchestratorFolderPath]" sap:VirtualizedContainerService.HintSize="434,268.6666666666667" sap2010:WorkflowViewState.IdRef="UploadStorageFile_2" Path="[CurrentFile.FullName]" StorageBucketName="[storageBucketName]" />
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="530.6666666666666,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Trace" Message="[&quot;File &quot; + FileNameInSB]" />
+                    <Sequence DisplayName="Upload file" sap:VirtualizedContainerService.HintSize="530.6666666666666,1252.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="Headers" />
+                        <Variable x:TypeArguments="x:String" Name="Response" />
+                        <Variable x:TypeArguments="x:Int32" Name="StatusCode" />
+                        <Variable x:TypeArguments="x:String" Name="uploadUri" />
+                        <Variable x:TypeArguments="njl:JObject" Name="jsonResponse" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" sap2010:Annotation.AnnotationText="Get Read URL" AuthenticationType="None" BodyFormat="application/xml" DisplayName="HTTP Request - Get Read URL" EnableSSLVerification="True" EndPoint="[in_OrchestratorUrl + &quot;odata/Buckets(&quot;+ bucketId +&quot;)/UiPath.Server.Configuration.OData.GetWriteUri?path=&quot;+ FileNameInSB +&quot;&amp;expiryInMinutes=5&quot;]" sap:VirtualizedContainerService.HintSize="496.6666666666667,134.66666666666666" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" ResponseHeaders="[Headers]" Result="[Response]" StatusCode="[StatusCode]" TimeoutMS="6000">
+                        <ui:HttpClient.Attachments>
+                          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                        </ui:HttpClient.Attachments>
+                        <ui:HttpClient.Cookies>
+                          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                        </ui:HttpClient.Cookies>
+                        <ui:HttpClient.Headers>
+                          <InArgument x:TypeArguments="x:String" x:Key="Authorization">[AccessToken]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="X-UIPATH-OrganizationUnitId">[in_FolderId]</InArgument>
+                        </ui:HttpClient.Headers>
+                        <ui:HttpClient.Parameters>
+                          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                        </ui:HttpClient.Parameters>
+                        <ui:HttpClient.UrlSegments>
+                          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                        </ui:HttpClient.UrlSegments>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:HttpClient>
+                      <Switch x:TypeArguments="x:Int32" DisplayName="Switch" Expression="[StatusCode]" sap:VirtualizedContainerService.HintSize="496.6666666666667,364" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+                        <Switch.Default>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Error" Message="[&quot;Failed to create storage bucket &quot; + storageBucketName + Environment.NewLine + &#xA;&quot;- CODE &quot; + StatusCode.ToString + Environment.NewLine + &#xA;&quot;- RESPONSE &quot; + Response.ToString + Environment.NewLine + &#xA;&quot;- HEADERS &quot; + String.Join(&quot;; &quot;, Headers.Select(Function(x) x.Key.ToString+&quot;: &quot;+x.Value.ToString))]" />
+                        </Switch.Default>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage x:Key="200" DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Trace" Message="[&quot;Got uri for file &quot; + CurrentFile.Name + &quot; at &quot; + storageBucketName]" />
+                      </Switch>
+                      <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="496.6666666666667,124" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[jsonResponse]" JsonString="[Response]" />
+                      <Assign sap:VirtualizedContainerService.HintSize="496.6666666666667,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_4">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[uploadUri]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[jsonResponse("Uri").ToString]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim fileBytes As Byte() = File.ReadAllBytes(in_filePath)&#xD;&#xA;&#xD;&#xA;Dim content As New System.Net.Http.ByteArrayContent(fileBytes)&#xD;&#xA;content.Headers.Add(&quot;x-ms-blob-type&quot;, &quot;BlockBlob&quot;)&#xD;&#xA;content.Headers.ContentType = New System.Net.Http.Headers.MediaTypeHeaderValue(&quot;application/octet-stream&quot;)&#xD;&#xA;&#xD;&#xA;Using client As New System.Net.Http.HttpClient()&#xD;&#xA;    Dim response As System.Net.Http.HttpResponseMessage = client.PutAsync(in_endpoint, content).Result&#xD;&#xA;    out_status = response.StatusCode&#xD;&#xA;    out_response = response.Content.ReadAsStringAsync().Result&#xD;&#xA;End Using&#xD;&#xA;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="496.6666666666667,197.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+                        <ui:InvokeCode.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_filePath">
+                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentFile.FullName" />
+                          </InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_endpoint">
+                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="uploadUri" />
+                          </InArgument>
+                          <OutArgument x:TypeArguments="x:Int32" x:Key="out_status">
+                            <VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="statusCode" />
+                          </OutArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="out_response">
+                            <VisualBasicReference x:TypeArguments="x:String" ExpressionText="Response" />
+                          </OutArgument>
+                        </ui:InvokeCode.Arguments>
+                      </ui:InvokeCode>
+                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="496.6666666666667,57.333333333333336" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+                        <ui:CommentOut.Body>
+                          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,185.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:HttpClient ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" sap2010:Annotation.AnnotationText="Upload File" AuthenticationType="None" Body="[File.ReadAllText(CurrentFile.FullName)]" BodyFormat="application/octet-stream" DisplayName="HTTP Request - Upload File" EnableSSLVerification="True" EndPoint="[uploadUri]" sap:VirtualizedContainerService.HintSize="382,125.33333333333333" sap2010:WorkflowViewState.IdRef="HttpClient_2" Method="PUT" StatusCode="[StatusCode]" TimeoutMS="60000">
+                              <ui:HttpClient.Attachments>
+                                <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                              </ui:HttpClient.Attachments>
+                              <ui:HttpClient.Cookies>
+                                <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                              </ui:HttpClient.Cookies>
+                              <ui:HttpClient.Headers>
+                                <InArgument x:TypeArguments="x:String" x:Key="x-ms-blob-type">BlockBlob</InArgument>
+                              </ui:HttpClient.Headers>
+                              <ui:HttpClient.Parameters>
+                                <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                              </ui:HttpClient.Parameters>
+                              <ui:HttpClient.UrlSegments>
+                                <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                              </ui:HttpClient.UrlSegments>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:HttpClient>
+                          </Sequence>
+                        </ui:CommentOut.Body>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:CommentOut>
+                      <Switch x:TypeArguments="x:Int32" DisplayName="Switch" Expression="[statusCode]" sap:VirtualizedContainerService.HintSize="496.6666666666667,166" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+                        <Switch.Default>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Warn" Message="[&quot;Failed to create storage bucket &quot; + storageBucketName + Environment.NewLine + &#xA;&quot;- CODE &quot; + StatusCode.ToString + Environment.NewLine + &#xA;&quot;- RESPONSE &quot; + Response.ToString + Environment.NewLine + &#xA;&quot;- HEADERS &quot; + String.Join(&quot;; &quot;, Headers.Select(Function(x) x.Key.ToString+&quot;: &quot;+x.Value.ToString))]" />
+                        </Switch.Default>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage x:Key="201" DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Trace" Message="[&quot;Uploaded file &quot; + CurrentFile.Name + &quot; at &quot; + storageBucketName]" />
+                      </Switch>
+                    </Sequence>
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="530.6666666666666,48" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,328.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ucas:UploadStorageFile FileResource="{x:Null}" TimeoutMS="{x:Null}" Destination="[CurrentFile.FullName.Replace(&#xA;&#x9;Path.Combine(in_DownloadsFolder, storageBucketName),&#xA;&#x9;&quot;&quot;&#xA;)]" DisplayName="Upload Storage File" FolderPath="[in_OrchestratorFolderPath]" sap:VirtualizedContainerService.HintSize="382,268.6666666666667" sap2010:WorkflowViewState.IdRef="UploadStorageFile_2" Path="[CurrentFile.FullName]" StorageBucketName="[storageBucketName]" />
+                        </Sequence>
+                      </ui:CommentOut.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:CommentOut>
                   </Sequence>
                 </ActivityAction>
               </ui:ForEachFileX.Body>

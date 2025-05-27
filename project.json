@@ -47,38 +47,38 @@
     "fileInfoCollection": [
       {
         "editingStatus": "InProgress",
-        "testCaseId": "fb9c6f9f-1ea4-4d04-b1ae-31d68a254fe5",
-        "testCaseType": "TestCase",
-        "executionTemplateInvokeIsolated": false,
-        "fileName": "API\\API_GetToken_TestCase.xaml"
-      },
-      {
-        "editingStatus": "InProgress",
         "testCaseId": "0929d3d6-0c3e-445b-b558-e4c012396cb0",
         "testCaseType": "TestCase",
         "executionTemplateInvokeIsolated": false,
         "fileName": "Tests\\Main_TestCase.xaml"
       },
       {
-        "editingStatus": "InProgress",
-        "testCaseId": "24213e16-d512-4bbe-aa70-2f99e3264286",
-        "testCaseType": "TestCase",
-        "executionTemplateInvokeIsolated": false,
-        "fileName": "StorageBuckets\\DownloadStorageFiles_TestCase.xaml"
-      },
-      {
-        "editingStatus": "InProgress",
-        "testCaseId": "ec801af8-9def-4e21-ba86-d1fc4cb18198",
-        "testCaseType": "TestCase",
-        "executionTemplateInvokeIsolated": false,
-        "fileName": "StorageBuckets\\GetStorageBuckets_TestCase.xaml"
-      },
-      {
-        "editingStatus": "InProgress",
+        "editingStatus": "Publishable",
         "testCaseId": "7bcd1684-1ae1-4bb3-ac66-c4f84ee86710",
         "testCaseType": "TestCase",
         "executionTemplateInvokeIsolated": false,
         "fileName": "StorageBuckets\\CreateStorageBuckets_TestCase.xaml"
+      },
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "ec801af8-9def-4e21-ba86-d1fc4cb18198",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "StorageBuckets\\01_Get_StorageBuckets_TestCase.xaml"
+      },
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "fb9c6f9f-1ea4-4d04-b1ae-31d68a254fe5",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "StorageBuckets\\00_Get_AccessToken_TestCase.xaml"
+      },
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "24213e16-d512-4bbe-aa70-2f99e3264286",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "StorageBuckets\\02_Download_StorageFiles_TestCase.xaml"
       }
     ],
     "saveToCloud": false
