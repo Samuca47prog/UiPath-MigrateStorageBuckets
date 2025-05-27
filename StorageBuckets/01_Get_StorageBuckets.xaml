@@ -1,10 +1,10 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="GetStorageFiles" this:GetStorageFiles.in_FolderId="1974666" this:GetStorageFiles.in_WorkbookPath="C:\Users\samuel.simao\OneDrive - UiPath\Documents\UiPath\Migration Tool\Aziz help\storage-buckets-API.xlsx" this:GetStorageFiles.in_AutomationCloudURL="https://staging.uipath.com/" this:GetStorageFiles.in_TenantName="Earth" this:GetStorageFiles.in_OrganizationName="universe" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="GetStorageFiles" this:GetStorageFiles.in_FolderId="1974666" this:GetStorageFiles.in_AutomationCloudURL="https://staging.uipath.com/" this:GetStorageFiles.in_TenantName="Earth" this:GetStorageFiles.in_OrganizationName="universe" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="X-UiPath-Organization/Unit Id. &#xD;&#xA;&#xD;&#xA;Sample value:1635850&#xD;&#xA;Case the url is &quot;.../orchestrator_/?tid=506830&amp;fid=1635850&quot; when in the orchestrator folder." Name="in_FolderId" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="Workbook path to be saved when getting buckets is done" Name="in_WorkbookPath" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="URL of UiPath Automation Cloud. Staging: https://staging.uipath.com/. Customers: https://cloud.uipath.com/" Name="in_AutomationCloudURL" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Name of the tenant to be used in case of Automation Cloud Orchestrator instances." Name="in_TenantName" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Unique site URL for Automation Cloud organization.&#xD;&#xA;This parameter is exclusive to Automation Cloud Orchestrator instances.&#xD;&#xA;&#xD;&#xA;Sample value: SampleAccount &#xD;&#xA;(assuming the organization account URL is https://cloud.uipath.com/SampleAccount)." Name="in_OrganizationName" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Data Table with all the storage buckets found in current Folder" Name="out_ThisFolderBucketsDT" Type="OutArgument(sd:DataTable)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -116,9 +116,8 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetStorageFiles" sap:VirtualizedContainerService.HintSize="1028.6666666666667,546" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetStorageFiles" sap:VirtualizedContainerService.HintSize="1028.6666666666667,1657.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="sd:DataTable" Name="outputDataTable" />
       <Variable x:TypeArguments="njl:JArray" Name="DeserializedJsonArray" />
       <Variable x:TypeArguments="x:String" Name="AccessToken" />
       <Variable x:TypeArguments="x:String" Name="OrchestratorUrl" />
@@ -128,7 +127,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="00_Get_AccessToken - Invoke Workflow File (API\API_GetAccessToken.xaml)" sap:VirtualizedContainerService.HintSize="450,210" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="StorageBuckets\00_Get_AccessToken.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="00_Get_AccessToken - Invoke Workflow File (API\API_GetAccessToken.xaml)" sap:VirtualizedContainerService.HintSize="526,210" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="StorageBuckets\00_Get_AccessToken.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="in_Scopes" />
         <OutArgument x:TypeArguments="x:String" x:Key="out_AccessToken">[AccessToken]</OutArgument>
@@ -137,7 +136,7 @@
         <InArgument x:TypeArguments="x:String" x:Key="in_AutomationCloudURL" />
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <Assign DisplayName="Assign - Orchestrator URL" sap:VirtualizedContainerService.HintSize="450,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Assign - Orchestrator URL" sap:VirtualizedContainerService.HintSize="526,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[OrchestratorUrl]</OutArgument>
       </Assign.To>
@@ -145,7 +144,7 @@
         <InArgument x:TypeArguments="x:String" xml:space="preserve">[String.Join("/", in_AutomationCloudURL,  in_OrganizationName, in_TenantName, "orchestrator_/")]</InArgument>
       </Assign.Value>
     </Assign>
-    <Sequence DisplayName="HTTPS Request - odata/Buckets" sap:VirtualizedContainerService.HintSize="450,57.333333333333336" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="HTTPS Request - odata/Buckets" sap:VirtualizedContainerService.HintSize="526,1307.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="url" />
         <Variable x:TypeArguments="x:Int32" Name="responseStatus" />
@@ -154,7 +153,7 @@
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -184,7 +183,7 @@
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" AuthenticationType="None" BodyFormat="application/xml" DisplayName="HTTP Request - Get ML Skills" EnableSSLVerification="True" EndPoint="[url]" sap:VirtualizedContainerService.HintSize="382,94.66666666666667" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" ResponseHeaders="[responseHeaders]" Result="[responseContent]" StatusCode="[responseStatus]" TimeoutMS="6000">
+                <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" AuthenticationType="None" BodyFormat="application/xml" DisplayName="HTTP Request - Get Buckets" EnableSSLVerification="True" EndPoint="[url]" sap:VirtualizedContainerService.HintSize="382,94.66666666666667" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" ResponseHeaders="[responseHeaders]" Result="[responseContent]" StatusCode="[responseStatus]" TimeoutMS="6000">
                   <ui:HttpClient.Attachments>
                     <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
                   </ui:HttpClient.Attachments>
@@ -305,9 +304,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" DisplayName="Deserialize JSON - Https response" sap:VirtualizedContainerService.HintSize="416,124" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[responseJson]" JsonString="[responseContent]" />
-        <ui:DeserializeJson x:TypeArguments="sd:DataTable" JsonSample="{x:Null}" DisplayName="Deserialize JSON - Get value" sap:VirtualizedContainerService.HintSize="416,114.66666666666667" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_2" JsonObject="[outputDataTable]" JsonString="[responseJson(&quot;value&quot;).ToString]" />
+        <ui:DeserializeJson x:TypeArguments="sd:DataTable" JsonSample="{x:Null}" DisplayName="Deserialize JSON - Get value" sap:VirtualizedContainerService.HintSize="416,114.66666666666667" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_2" JsonObject="[out_ThisFolderBucketsDT]" JsonString="[responseJson(&quot;value&quot;).ToString]" />
       </Sequence>
     </Sequence>
-    <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[outputDataTable]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="450,138.66666666666666" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="Get" WorkbookPath="[in_WorkbookPath]" />
   </Sequence>
 </Activity>

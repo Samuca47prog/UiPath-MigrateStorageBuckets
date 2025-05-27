@@ -79,6 +79,13 @@
         "testCaseType": "TestCase",
         "executionTemplateInvokeIsolated": false,
         "fileName": "StorageBuckets\\02_Download_StorageFiles_TestCase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "c811127c-f2bc-4b2c-aff3-2768b7e464f8",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "StorageBuckets\\Get_Folders_TestCase.xaml"
       }
     ],
     "saveToCloud": false
