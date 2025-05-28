@@ -92,7 +92,7 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="API_GetToken - Invoke Workflow File (API\API_GetToken.xaml)" sap:VirtualizedContainerService.HintSize="416,200.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="StorageBuckets\00_Get_AccessToken.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="API_GetToken - Invoke Workflow File (API\API_GetToken.xaml)" sap:VirtualizedContainerService.HintSize="416,200.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Orchestrator\Get_AccessToken.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="x:String" x:Key="in_Scopes" />
           <OutArgument x:TypeArguments="x:String" x:Key="out_AccessToken">[AccessToken]</OutArgument>

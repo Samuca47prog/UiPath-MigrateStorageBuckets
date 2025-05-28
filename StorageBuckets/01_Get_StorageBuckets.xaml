@@ -1,9 +1,9 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="GetStorageFiles" this:GetStorageFiles.in_FolderId="1974666" this:GetStorageFiles.in_AutomationCloudURL="https://staging.uipath.com/" this:GetStorageFiles.in_TenantName="Earth" this:GetStorageFiles.in_OrganizationName="universe" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="X-UiPath-Organization/Unit Id. &#xD;&#xA;&#xD;&#xA;Sample value:1635850&#xD;&#xA;Case the url is &quot;.../orchestrator_/?tid=506830&amp;fid=1635850&quot; when in the orchestrator folder." Name="in_FolderId" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="X-UiPath-Organization/Unit Id. &#xA;&#xA;Sample value:1635850&#xA;Case the url is &quot;.../orchestrator_/?tid=506830&amp;fid=1635850&quot; when in the orchestrator folder." Name="in_FolderId" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="URL of UiPath Automation Cloud. Staging: https://staging.uipath.com/. Customers: https://cloud.uipath.com/" Name="in_AutomationCloudURL" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Name of the tenant to be used in case of Automation Cloud Orchestrator instances." Name="in_TenantName" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="Unique site URL for Automation Cloud organization.&#xD;&#xA;This parameter is exclusive to Automation Cloud Orchestrator instances.&#xD;&#xA;&#xD;&#xA;Sample value: SampleAccount &#xD;&#xA;(assuming the organization account URL is https://cloud.uipath.com/SampleAccount)." Name="in_OrganizationName" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Unique site URL for Automation Cloud organization.&#xA;This parameter is exclusive to Automation Cloud Orchestrator instances.&#xA;&#xA;Sample value: SampleAccount &#xA;(assuming the organization account URL is https://cloud.uipath.com/SampleAccount)." Name="in_OrganizationName" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Data Table with all the storage buckets found in current Folder" Name="out_ThisFolderBucketsDT" Type="OutArgument(sd:DataTable)" />
   </x:Members>
   <VisualBasic.Settings>
@@ -116,7 +116,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetStorageFiles" sap:VirtualizedContainerService.HintSize="1028.6666666666667,1657.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetStorageFiles" sap:VirtualizedContainerService.HintSize="1056,1737.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="njl:JArray" Name="DeserializedJsonArray" />
       <Variable x:TypeArguments="x:String" Name="AccessToken" />
@@ -127,7 +127,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="00_Get_AccessToken - Invoke Workflow File (API\API_GetAccessToken.xaml)" sap:VirtualizedContainerService.HintSize="526,210" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="StorageBuckets\00_Get_AccessToken.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="00_Get_AccessToken - Invoke Workflow File (API\API_GetAccessToken.xaml)" sap:VirtualizedContainerService.HintSize="526,210" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Orchestrator\Get_AccessToken.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="in_Scopes" />
         <OutArgument x:TypeArguments="x:String" x:Key="out_AccessToken">[AccessToken]</OutArgument>
@@ -144,7 +144,7 @@
         <InArgument x:TypeArguments="x:String" xml:space="preserve">[String.Join("/", in_AutomationCloudURL,  in_OrganizationName, in_TenantName, "orchestrator_/")]</InArgument>
       </Assign.Value>
     </Assign>
-    <Sequence DisplayName="HTTPS Request - odata/Buckets" sap:VirtualizedContainerService.HintSize="526,1307.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="HTTPS Request - odata/Buckets" sap:VirtualizedContainerService.HintSize="526,1387.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="url" />
         <Variable x:TypeArguments="x:Int32" Name="responseStatus" />
@@ -165,13 +165,13 @@
           <InArgument x:TypeArguments="x:String">[OrchestratorUrl +"odata/Buckets"]</InArgument>
         </Assign.Value>
       </Assign>
-      <Sequence DisplayName="Make Http request" sap:VirtualizedContainerService.HintSize="492,448" sap2010:WorkflowViewState.IdRef="Sequence_6">
+      <Sequence DisplayName="Make Http request" sap:VirtualizedContainerService.HintSize="492,528" sap2010:WorkflowViewState.IdRef="Sequence_6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:RetryScope ContinueOnError="{x:Null}" DisplayName="Retry Scope - HTTPS request" sap:VirtualizedContainerService.HintSize="458,356" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="3" RetryInterval="{x:Null}">
+        <ui:RetryScope DisplayName="Retry Scope - HTTPS request" sap:VirtualizedContainerService.HintSize="458,436" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="3">
           <ui:RetryScope.ActivityBody>
             <ActivityAction>
               <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="416,154.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_11">

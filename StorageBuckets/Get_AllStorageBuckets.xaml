@@ -112,7 +112,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Get_AllStorageBuckets" sap:VirtualizedContainerService.HintSize="1028.6666666666667,1168.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Get_AllStorageBuckets" sap:VirtualizedContainerService.HintSize="1056,1168.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="njl:JArray" Name="FoldersJArray" />
       <Variable x:TypeArguments="sd:DataTable" Name="BucketsDT" />
@@ -130,7 +130,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Get_Folders - Invoke Workflow File (StorageBuckets\Get_Folders.xaml)" sap:VirtualizedContainerService.HintSize="450,210" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="StorageBuckets\Get_Folders.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Get_Folders - Invoke Workflow File (StorageBuckets\Get_Folders.xaml)" sap:VirtualizedContainerService.HintSize="450,210" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Orchestrator\Get_Folders.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="in_ExtAppOrchestratorFolderPath" />
         <InArgument x:TypeArguments="x:String" x:Key="in_ExtAppOrchestratorCredentialName" />
