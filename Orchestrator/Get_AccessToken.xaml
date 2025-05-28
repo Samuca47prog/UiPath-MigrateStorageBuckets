@@ -1,10 +1,10 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="API_GetToken" this:API_GetToken.in_Scopes="OR.Administration" this:API_GetToken.in_ExtAppOrchestratorFolderPath="Italy/Naples" this:API_GetToken.in_ExtAppOrchestratorCredentialName="MigrationTool" this:API_GetToken.in_AutomationCloudURL="https://staging.uipath.com/" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="API_GetToken" this:API_GetToken.in_AutomationCloudURL="https://staging.uipath.com/" this:API_GetToken.in_ExtAppOrchestratorFolderPath="Italy/Naples" this:API_GetToken.in_ExtAppOrchestratorCredentialName="MigrationTool" this:API_GetToken.in_ExtAppScopes="OR.Administration" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="Scopes needed for the Token. For buckets, &quot;OR.Administration&quot; is needed." Name="in_Scopes" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="Access Token ready to be used as authentication in http requests for the orchestrator" Name="out_AccessToken" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="URL of UiPath Automation Cloud. Staging: https://staging.uipath.com/. Customers: https://cloud.uipath.com/" Name="in_AutomationCloudURL" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Orchestrator Folder Path where the credential for the External App lives" Name="in_ExtAppOrchestratorFolderPath" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Credential name where cliend Id and Secret lives" Name="in_ExtAppOrchestratorCredentialName" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="URL of UiPath Automation Cloud. Staging: https://staging.uipath.com/. Customers: https://cloud.uipath.com/" Name="in_AutomationCloudURL" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Scopes needed for the Token. For buckets, &quot;OR.Administration&quot; is needed." Name="in_ExtAppScopes" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Access Token ready to be used as authentication in http requests for the orchestrator" Name="out_AccessToken" Type="OutArgument(x:String)" />
   </x:Members>
   <sap:VirtualizedContainerService.HintSize>1356,1350.6666666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
@@ -113,7 +113,7 @@
       <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="API_GetToken" sap:VirtualizedContainerService.HintSize="1028.6666666666667,1775.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_4">
+  <Sequence DisplayName="API_GetToken" sap:VirtualizedContainerService.HintSize="1056,1636" sap2010:WorkflowViewState.IdRef="Sequence_4">
     <Sequence.Variables>
       <Variable x:TypeArguments="njl:JObject" Name="responseJson" />
       <Variable x:TypeArguments="x:String" Name="ClientSecret" />
@@ -125,7 +125,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="598.6666666666666,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Trace" Message="[&quot;Getting new access token...&quot;]" />
-    <Sequence DisplayName="Get access Token" sap:VirtualizedContainerService.HintSize="598.6666666666666,1468" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence DisplayName="Get access Token" sap:VirtualizedContainerService.HintSize="598.6666666666666,1328.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -221,7 +221,7 @@
           </If.Else>
         </If>
       </Sequence>
-      <Sequence DisplayName="HTTPS Request - identity_/connect/token" sap:VirtualizedContainerService.HintSize="564.6666666666666,1318.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_12">
+      <Sequence DisplayName="HTTPS Request - identity_/connect/token" sap:VirtualizedContainerService.HintSize="564.6666666666666,1179.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_12">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="url" />
           <Variable x:TypeArguments="x:Int32" Name="responseStatus" />
@@ -246,7 +246,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:RetryScope ContinueOnError="{x:Null}" DisplayName="Retry Scope - HTTPS request" sap:VirtualizedContainerService.HintSize="458,386.6666666666667" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="3" RetryInterval="{x:Null}">
+          <ui:RetryScope DisplayName="Retry Scope - HTTPS request" sap:VirtualizedContainerService.HintSize="458,386.6666666666667" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="3">
             <ui:RetryScope.ActivityBody>
               <ActivityAction>
                 <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="416,185.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_13">
@@ -272,7 +272,7 @@
                       <InArgument x:TypeArguments="x:String" x:Key="Parameters">POST</InArgument>
                       <InArgument x:TypeArguments="x:String" x:Key="client_id">[ClientId]</InArgument>
                       <InArgument x:TypeArguments="x:String" x:Key="client_secret">[ClientSecret]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="scope">[in_Scopes]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="scope">[in_ExtAppScopes]</InArgument>
                       <InArgument x:TypeArguments="x:String" x:Key="grant_type">client_credentials</InArgument>
                     </ui:HttpClient.Parameters>
                     <ui:HttpClient.UrlSegments>
@@ -292,14 +292,14 @@
             </ui:RetryScope.Condition>
           </ui:RetryScope>
         </Sequence>
-        <Sequence DisplayName="Evaluate Http response code" sap:VirtualizedContainerService.HintSize="530.6666666666666,442.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_18">
+        <Sequence DisplayName="Evaluate Http response code" sap:VirtualizedContainerService.HintSize="530.6666666666666,303.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_18">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Switch x:TypeArguments="x:Int32" sap2010:Annotation.AnnotationText="Remember:&#xA;- Always update the response codes logs and actions based in your scenario" DisplayName="Switch - Http request" Expression="[responseStatus]" sap:VirtualizedContainerService.HintSize="496.6666666666667,350.6666666666667" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+          <Switch x:TypeArguments="x:Int32" sap2010:Annotation.AnnotationText="Remember:&#xA;- Always update the response codes logs and actions based in your scenario" DisplayName="Switch - Http request" Expression="[responseStatus]" sap:VirtualizedContainerService.HintSize="496.6666666666667,211.33333333333334" sap2010:WorkflowViewState.IdRef="Switch`1_2">
             <Switch.Default>
               <Throw DisplayName="Throw - Getting Access Token failed" Exception="[New SystemException(&quot;Getting Access Token failed!&quot; + &quot; - Failed getting access token! &quot; + Environment.NewLine + responseContent)]" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="Throw_1" />
             </Switch.Default>

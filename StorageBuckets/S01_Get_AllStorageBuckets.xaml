@@ -1,7 +1,17 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Get_AllStorageBuckets" this:Get_AllStorageBuckets.in_WorkbookPath="C:\Users\samuel.simao\OneDrive - UiPath\Documents\UiPath\Migration Tool\Aziz help\storage-buckets.xlsx" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Get_AllStorageBuckets" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_AutomationCloudURL" Type="InArgument(x:String)" />
+    <x:Property Name="in_OrganizationName" Type="InArgument(x:String)" />
+    <x:Property Name="in_TenantName" Type="InArgument(x:String)" />
+    <x:Property Name="in_ExtAppOrchestratorFolderPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_ExtAppOrchestratorCredentialname" Type="InArgument(x:String)" />
+    <x:Property Name="in_ExtAppScopes" Type="InArgument(x:String)" />
     <x:Property Name="in_WorkbookPath" Type="InArgument(x:String)" />
   </x:Members>
+  <this:Get_AllStorageBuckets.in_ExtAppScopes>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Get_AllStorageBuckets.in_ExtAppScopes>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
@@ -112,7 +122,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Get_AllStorageBuckets" sap:VirtualizedContainerService.HintSize="1056,1168.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Get_AllStorageBuckets" sap:VirtualizedContainerService.HintSize="1056,1378.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="njl:JArray" Name="FoldersJArray" />
       <Variable x:TypeArguments="sd:DataTable" Name="BucketsDT" />
@@ -124,20 +134,29 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Variable>
+      <Variable x:TypeArguments="x:String" Name="AccessToken" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Get_Folders - Invoke Workflow File (StorageBuckets\Get_Folders.xaml)" sap:VirtualizedContainerService.HintSize="450,210" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Orchestrator\Get_Folders.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Get_AccessToken - Invoke Workflow File (Orchestrator\Get_AccessToken.xaml)" sap:VirtualizedContainerService.HintSize="450,210" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Orchestrator\Get_AccessToken.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_ExtAppOrchestratorFolderPath" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_ExtAppOrchestratorCredentialName" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_AutomationCloudURL" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_TenantName" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_OrganizationName" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_AutomationCloudURL">[in_AutomationCloudURL]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ExtAppOrchestratorFolderPath">[in_ExtAppOrchestratorFolderPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ExtAppOrchestratorCredentialName">[in_ExtAppOrchestratorCredentialname]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ExtAppScopes">[in_ExtAppScopes]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_AccessToken">[AccessToken]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Get_Folders - Invoke Workflow File (Orchestrator\Get_Folders.xaml)" sap:VirtualizedContainerService.HintSize="450,210" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Orchestrator\Get_Folders.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_AutomationCloudURL">[in_AutomationCloudURL]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_TenantName">[in_TenantName]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_OrganizationName">[in_OrganizationName]</InArgument>
         <OutArgument x:TypeArguments="njl:JArray" x:Key="out_FoldersJArray">[FoldersJArray]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_AccessToken">[AccessToken]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <Assign DisplayName="Assign - Initiate Buckets DT" sap:VirtualizedContainerService.HintSize="450,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
@@ -166,10 +185,11 @@
             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="01_Get_StorageBuckets - Invoke Workflow File (StorageBuckets\01_Get_StorageBuckets.xaml)" sap:VirtualizedContainerService.HintSize="382,210" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="StorageBuckets\01_Get_StorageBuckets.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="in_FolderId">[currentJToken("Id").ToString]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_AutomationCloudURL" />
-                <InArgument x:TypeArguments="x:String" x:Key="in_TenantName" />
-                <InArgument x:TypeArguments="x:String" x:Key="in_OrganizationName" />
+                <InArgument x:TypeArguments="x:String" x:Key="in_AutomationCloudURL">[in_AutomationCloudURL]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_TenantName">[in_TenantName]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_OrganizationName">[in_OrganizationName]</InArgument>
                 <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_ThisFolderBucketsDT">[ThisFolderBucketsDT]</OutArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_AccessToken">[AccessToken]</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
             <If sap2010:Annotation.AnnotationText="No bucket in this folder, go to next folder" Condition="[ThisFolderBucketsDT.RowCount = 0]" DisplayName="If - No bucket found in this folder" sap:VirtualizedContainerService.HintSize="382,102.66666666666667" sap2010:WorkflowViewState.IdRef="If_1">

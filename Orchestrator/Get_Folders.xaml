@@ -1,12 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Activity mc:Ignorable="sap sap2010" x:Class="API_GetToken" this:API_GetToken.in_ExtAppOrchestratorFolderPath="Italy/Naples" this:API_GetToken.in_ExtAppOrchestratorCredentialName="MigrationTool" this:API_GetToken.in_AutomationCloudURL="https://staging.uipath.com/" this:API_GetToken.in_TenantName="Earth" this:API_GetToken.in_OrganizationName="universe" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="API_GetToken" this:API_GetToken.in_AutomationCloudURL="https://staging.uipath.com/" this:API_GetToken.in_TenantName="Earth" this:API_GetToken.in_OrganizationName="universe" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="Orchestrator Folder Path where the credential for the External App lives" Name="in_ExtAppOrchestratorFolderPath" Type="InArgument(x:String)" />
-    <x:Property sap2010:Annotation.AnnotationText="Credential name where cliend Id and Secret lives" Name="in_ExtAppOrchestratorCredentialName" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="URL of UiPath Automation Cloud. Staging: https://staging.uipath.com/. Customers: https://cloud.uipath.com/" Name="in_AutomationCloudURL" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Name of the tenant to be used in case of Automation Cloud Orchestrator instances." Name="in_TenantName" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Unique site URL for Automation Cloud organization.&#xA;This parameter is exclusive to Automation Cloud Orchestrator instances.&#xA;&#xA;Sample value: SampleAccount &#xA;(assuming the organization account URL is https://cloud.uipath.com/SampleAccount)." Name="in_OrganizationName" Type="InArgument(x:String)" />
     <x:Property Name="out_FoldersJArray" Type="OutArgument(njl:JArray)" />
+    <x:Property sap2010:Annotation.AnnotationText="Access Token ready to be used as authentication in http requests for the orchestrator" Name="in_AccessToken" Type="InArgument(x:String)" />
   </x:Members>
   <sap:VirtualizedContainerService.HintSize>1356,1350.6666666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
@@ -115,12 +113,11 @@
       <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="API_GetToken" sap:VirtualizedContainerService.HintSize="1028.6666666666667,1770.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_4">
+  <Sequence DisplayName="API_GetToken" sap:VirtualizedContainerService.HintSize="1056,1696.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_4">
     <Sequence.Variables>
       <Variable x:TypeArguments="njl:JObject" Name="responseJson" />
       <Variable x:TypeArguments="x:String" Name="ClientSecret" />
       <Variable x:TypeArguments="x:String" Name="ClientId" />
-      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Access Token ready to be used as authentication in http requests for the orchestrator" Name="accessToken" />
       <Variable x:TypeArguments="x:String" Name="OrchestratorUrl" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
@@ -129,15 +126,6 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="564.6666666666666,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Trace" Message="[&quot;Getting folders...&quot;]" />
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="00_Get_AccessToken - Invoke Workflow File (StorageBuckets\00_Get_AccessToken.xaml)" sap:VirtualizedContainerService.HintSize="564.6666666666666,210" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Orchestrator\Get_AccessToken.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Scopes">OR.Folders</InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_AccessToken">[accessToken]</OutArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_ExtAppOrchestratorFolderPath" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_ExtAppOrchestratorCredentialName" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_AutomationCloudURL" />
-      </ui:InvokeWorkflowFile.Arguments>
-    </ui:InvokeWorkflowFile>
     <Assign DisplayName="Assign - Orchestrator URL" sap:VirtualizedContainerService.HintSize="564.6666666666666,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_5">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[OrchestratorUrl]</OutArgument>
@@ -146,7 +134,7 @@
         <InArgument x:TypeArguments="x:String" xml:space="preserve">[String.Join("/", in_AutomationCloudURL,  in_OrganizationName, in_TenantName, "orchestrator_/")]</InArgument>
       </Assign.Value>
     </Assign>
-    <Sequence DisplayName="HTTPS Request - odata/Folders" sap:VirtualizedContainerService.HintSize="564.6666666666666,1161.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_20">
+    <Sequence DisplayName="HTTPS Request - odata/Folders" sap:VirtualizedContainerService.HintSize="564.6666666666666,1297.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_20">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="url" />
         <Variable x:TypeArguments="x:Int32" Name="responseStatus" />
@@ -191,7 +179,7 @@
                     <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
                   </ui:HttpClient.Cookies>
                   <ui:HttpClient.Headers>
-                    <InArgument x:TypeArguments="x:String" x:Key="Authorization">[AccessToken]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="Authorization">[in_AccessToken]</InArgument>
                   </ui:HttpClient.Headers>
                   <ui:HttpClient.Parameters>
                     <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
@@ -208,13 +196,13 @@
           </ui:RetryScope.Condition>
         </ui:RetryScope>
       </Sequence>
-      <Sequence DisplayName="Evaluate Http response code" sap:VirtualizedContainerService.HintSize="530.6666666666666,306.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_22">
+      <Sequence DisplayName="Evaluate Http response code" sap:VirtualizedContainerService.HintSize="530.6666666666666,442.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_22">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Switch x:TypeArguments="x:Int32" sap2010:Annotation.AnnotationText="Remember:&#xA;- Always update the response codes logs and actions based in your scenario" DisplayName="Switch - Http request" Expression="[responseStatus]" sap:VirtualizedContainerService.HintSize="496.6666666666667,214.66666666666666" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+        <Switch x:TypeArguments="x:Int32" sap2010:Annotation.AnnotationText="Remember:&#xA;- Always update the response codes logs and actions based in your scenario" DisplayName="Switch - Http request" Expression="[responseStatus]" sap:VirtualizedContainerService.HintSize="496.6666666666667,350.6666666666667" sap2010:WorkflowViewState.IdRef="Switch`1_3">
           <Switch.Default>
             <Throw DisplayName="Throw - Http response not mapped" Exception="[New SystemException(&quot;Http response not mapped&quot; + &quot; - The error code &quot; + responseStatus.ToString + &quot; was not mapped. Response content was '&quot; + responseContent + &quot;'&quot;)]" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="Throw_2" />
           </Switch.Default>

@@ -5,6 +5,7 @@
     <x:Property sap2010:Annotation.AnnotationText="Name of the tenant to be used in case of Automation Cloud Orchestrator instances." Name="in_TenantName" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Unique site URL for Automation Cloud organization.&#xA;This parameter is exclusive to Automation Cloud Orchestrator instances.&#xA;&#xA;Sample value: SampleAccount &#xA;(assuming the organization account URL is https://cloud.uipath.com/SampleAccount)." Name="in_OrganizationName" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Data Table with all the storage buckets found in current Folder" Name="out_ThisFolderBucketsDT" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="in_AccessToken" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -116,10 +117,9 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetStorageFiles" sap:VirtualizedContainerService.HintSize="1056,1737.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetStorageFiles" sap:VirtualizedContainerService.HintSize="1056,1527.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="njl:JArray" Name="DeserializedJsonArray" />
-      <Variable x:TypeArguments="x:String" Name="AccessToken" />
       <Variable x:TypeArguments="x:String" Name="OrchestratorUrl" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
@@ -127,15 +127,6 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="00_Get_AccessToken - Invoke Workflow File (API\API_GetAccessToken.xaml)" sap:VirtualizedContainerService.HintSize="526,210" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Orchestrator\Get_AccessToken.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Scopes" />
-        <OutArgument x:TypeArguments="x:String" x:Key="out_AccessToken">[AccessToken]</OutArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_ExtAppOrchestratorFolderPath" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_ExtAppOrchestratorCredentialName" />
-        <InArgument x:TypeArguments="x:String" x:Key="in_AutomationCloudURL" />
-      </ui:InvokeWorkflowFile.Arguments>
-    </ui:InvokeWorkflowFile>
     <Assign DisplayName="Assign - Orchestrator URL" sap:VirtualizedContainerService.HintSize="526,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[OrchestratorUrl]</OutArgument>
@@ -191,7 +182,7 @@
                     <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
                   </ui:HttpClient.Cookies>
                   <ui:HttpClient.Headers>
-                    <InArgument x:TypeArguments="x:String" x:Key="Authorization">[AccessToken]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="Authorization">[in_AccessToken]</InArgument>
                     <InArgument x:TypeArguments="x:String" x:Key="X-UIPATH-OrganizationUnitId">[in_FolderId]</InArgument>
                   </ui:HttpClient.Headers>
                   <ui:HttpClient.Parameters>
